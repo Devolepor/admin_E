@@ -1984,94 +1984,108 @@
     </div>
   </div>
 
-  <!-- Modal إضافة/تعديل طالب -->
-  <div id="studentModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="modalTitle"><i class="fas fa-user-plus"></i> إضافة طالب جديد</h3>
-        <span class="close" onclick="closeModal()">&times;</span>
+ <!-- Modal إضافة/تعديل طالب -->
+<div id="studentModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modalTitle"><i class="fas fa-user-plus"></i> إضافة طالب جديد</h3>
+      <span class="close" onclick="closeModal()">&times;</span>
+    </div>
+    
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="studentId"><i class="fas fa-id-card"></i> كود الطالب</label>
+        <input type="text" id="studentId" placeholder="سيتم توليد الكود تلقائياً" disabled>
       </div>
       
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="studentId"><i class="fas fa-id-card"></i> كود الطالب</label>
-          <input type="text" id="studentId" placeholder="سيتم توليد الكود تلقائياً" disabled>
-        </div>
-        
-        <div class="form-group">
-          <label for="studentName"><i class="fas fa-user"></i> اسم الطالب</label>
-          <input type="text" id="studentName" placeholder="أدخل اسم الطالب">
-        </div>
-        
-        <div class="form-group">
-          <label for="studentGrade"><i class="fas fa-graduation-cap"></i> الصف</label>
-          <select id="studentGrade">
-            <option value="" disabled selected>اختر الصف</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="studentPhone"><i class="fas fa-phone"></i> رقم ولي الأمر (اختياري)</label>
-          <input type="text" id="studentPhone" placeholder="أدخل رقم الهاتف">
-        </div>
-         <div class="form-group">
-          <label for="studentday"><i class="fas fa-day"></i> اليوم</label>
-          <select id="studentday">
-            <option value="">اختر اليوم</option>
-            <option value="السبت">السبت</option>
-            <option value="الاحد">الاحد</option>
-            <option value="الاثنين">الاثنين</option>
-            <option value="الثلاثاء">الثلاثاء</option>
-            <option value="الأربعاء">الأربعاء</option>
-            <option value="الخميس">الخميس</option>
-            <option value="الجمعة">الجمعة</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="studentLevel"><i class="fas fa-star"></i> المستوى الأكاديمي (اختياري)</label>
-          <select id="studentLevel">
-            <option value="">اختر المستوى</option>
-            <option value="ضعيف">ضعيف</option>
-            <option value="مقبول">مقبول</option>
-            <option value="جيد">جيد</option>
-            <option value="جيد جدا">جيد جدا</option>
-            <option value="ممتاز">ممتاز</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label><i class="fas fa-image"></i> صورة الطالب (اختياري)</label>
-          <div class="image-upload-container">
-            <div class="image-preview-wrapper">
-              <img id="studentImagePreview" class="image-preview" alt="معاينة الصورة" onclick="expandImage(this)">
-              <div class="image-actions" id="imageActions">
-                <button class="btn btn-small btn-danger" onclick="removeImage()">
-                  <i class="fas fa-trash"></i> حذف
-                </button>
-                <button class="btn btn-small btn-success" onclick="document.getElementById('studentImage').click()">
-                  <i class="fas fa-sync"></i> تغيير
-                </button>
-              </div>
+      <div class="form-group">
+        <label for="studentName"><i class="fas fa-user"></i> اسم الطالب</label>
+        <input type="text" id="studentName" placeholder="أدخل اسم الطالب" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="studentGrade"><i class="fas fa-graduation-cap"></i> الصف</label>
+        <select id="studentGrade" required>
+          <option value="" disabled selected>اختر الصف</option>
+          <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+          <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+          <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="schoolName"><i class="fas fa-school"></i> اسم المدرسة</label>
+        <input type="text" id="schoolName" placeholder="أدخل اسم المدرسة">
+      </div>
+      
+      <div class="form-group">
+        <label for="studentPhone"><i class="fas fa-phone"></i> رقم ولي الأمر (الأب)</label>
+        <input type="tel" id="studentPhone" placeholder="أدخل رقم الهاتف">
+      </div>
+      
+      <div class="form-group">
+        <label for="motherPhone"><i class="fas fa-phone"></i> رقم ولي الأمر (الأم)</label>
+        <input type="tel" id="motherPhone" placeholder="أدخل رقم الهاتف">
+      </div>
+      
+      <div class="form-group">
+        <label for="studentday"><i class="fas fa-calendar-day"></i> اليوم</label>
+        <select id="studentday">
+          <option value="">اختر اليوم</option>
+          <option value="السبت">السبت</option>
+          <option value="الاحد">الاحد</option>
+          <option value="الاثنين">الاثنين</option>
+          <option value="الثلاثاء">الثلاثاء</option>
+          <option value="الأربعاء">الأربعاء</option>
+          <option value="الخميس">الخميس</option>
+          <option value="الجمعة">الجمعة</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="studentLevel"><i class="fas fa-star"></i> المستوى الأكاديمي</label>
+        <select id="studentLevel">
+          <option value="">اختر المستوى</option>
+          <option value="ضعيف">ضعيف</option>
+          <option value="مقبول">مقبول</option>
+          <option value="جيد">جيد</option>
+          <option value="جيد جدا">جيد جدا</option>
+          <option value="ممتاز">ممتاز</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label><i class="fas fa-image"></i> صورة الطالب</label>
+        <div class="image-upload-container">
+          <div class="image-preview-wrapper">
+            <img id="studentImagePreview" class="image-preview" alt="معاينة الصورة" onclick="expandImage(this)">
+            <div class="image-actions" id="imageActions">
+              <button type="button" class="btn btn-small btn-danger" onclick="removeImage()">
+                <i class="fas fa-trash"></i> حذف
+              </button>
+              <button type="button" class="btn btn-small btn-success" onclick="document.getElementById('studentImage').click()">
+                <i class="fas fa-sync"></i> تغيير
+              </button>
             </div>
-            <button class="btn upload-btn">
-              <i class="fas fa-upload"></i> اختر صورة
-              <input type="file" id="studentImage" accept="image/*" onchange="previewStudentImage()">
-            </button>
           </div>
+          <button type="button" class="btn upload-btn">
+            <i class="fas fa-upload"></i> اختر صورة
+            <input type="file" id="studentImage" accept="image/*" onchange="previewStudentImage()" style="display: none;">
+          </button>
         </div>
-      </div>
-      
-      <div class="modal-footer">
-        <button class="btn" onclick="closeModal()">
-          <i class="fas fa-times"></i> إلغاء
-        </button>
-        <button class="btn btn-success" id="saveStudentBtn">
-          <i class="fas fa-save"></i> حفظ الطالب
-        </button>
       </div>
     </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn" onclick="closeModal()">
+        <i class="fas fa-times"></i> إلغاء
+      </button>
+      <button type="button" class="btn btn-success" id="saveStudentBtn">
+        <i class="fas fa-save"></i> حفظ الطالب
+      </button>
+    </div>
   </div>
+</div>
 
   <!-- Modal حذف طالب -->
   <div id="deleteModal" class="modal">
@@ -2288,7 +2302,7 @@ const trashPath = "trash.json";
 const reportsPath = "reports.json";
 const branch = "main";
 const PASSWORD = "admin123";
-const MAX_FILE_SIZE = Number.MAX_SAFE_INTEGER; // أكبر قيمة ممكنة للعدد الآمن في جافاسكربت
+const MAX_FILE_SIZE = Number.MAX_SAFE_INTEGER;
 let currentStudentId = null;
 let currentPostId = null;
 let deleteStudentId = null;
@@ -2296,8 +2310,8 @@ let isLoading = false;
 let originalButtonText = "";
 let postImageFile = null;
 let studentImageFile = null;
-let allStudentsData = {}; // لتخزين جميع بيانات الطلاب من جميع الملفات
-let currentDataFile = "students.json"; // الملف الحالي المستخدم للتخزين
+let allStudentsData = {};
+let currentDataFile = "students.json";
 let currentPopupStudentId = null;
 
 const grades = [
@@ -2308,7 +2322,6 @@ const levels = ["ضعيف", "مقبول", "جيد", "جيد جدا", "ممتاز
 
 const days = ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة"];
 
-// أيام الأسبوع وأشهر السنة للاستخدام في الجدول
 const weekDays = ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة"];
 const months = ["أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر", "يناير", "فبراير", "مارس", "أبريل"];
 
@@ -2326,12 +2339,18 @@ function sendNewStudentNotification(studentId, studentData) {
                + `الاسم: ${studentData.name}\n`
                + `الكود: ${studentId}\n`
                + `الصف: ${studentData.main}\n`
+               + `المدرسة: ${studentData.school || 'غير محدد'}\n`
                + `اليوم: ${studentData.day || 'غير محدد'}\n`
                + `المستوى: ${studentData.info || 'غير محدد'}\n\n`
                + `شكراً لتسجيلك معنا!`;
   
   if (studentData.phone) {
     sendWhatsAppNotification(studentData.phone, message);
+  }
+  
+  // إرسال إشعار للأم إذا كان رقمها موجود
+  if (studentData.motherPhone) {
+    sendWhatsAppNotification(studentData.motherPhone, message);
   }
 }
 
@@ -2346,6 +2365,11 @@ function sendAttendanceNotification(studentId, studentData, day, status) {
   if (studentData.phone) {
     sendWhatsAppNotification(studentData.phone, message);
   }
+  
+  // إرسال إشعار للأم إذا كان رقمها موجود
+  if (studentData.motherPhone) {
+    sendWhatsAppNotification(studentData.motherPhone, message);
+  }
 }
 
 // دالة لإرسال إشعار عند تسديد المصروفات
@@ -2359,6 +2383,11 @@ function sendFeesNotification(studentId, studentData, month, isPaid) {
   if (studentData.phone) {
     sendWhatsAppNotification(studentData.phone, message);
   }
+  
+  // إرسال إشعار للأم إذا كان رقمها موجود
+  if (studentData.motherPhone) {
+    sendWhatsAppNotification(studentData.motherPhone, message);
+  }
 }
 
 // دالة لإرسال إشعار عند إضافة ملاحظة
@@ -2370,6 +2399,11 @@ function sendNotesNotification(studentId, studentData, notes) {
   
   if (studentData.phone) {
     sendWhatsAppNotification(studentData.phone, message);
+  }
+  
+  // إرسال إشعار للأم إذا كان رقمها موجود
+  if (studentData.motherPhone) {
+    sendWhatsAppNotification(studentData.motherPhone, message);
   }
 }
 
@@ -2388,9 +2422,15 @@ function sendUpdateNotification(studentId, studentData, updatedFields) {
   if (studentData.phone) {
     sendWhatsAppNotification(studentData.phone, message);
   }
+  
+  // إرسال إشعار للأم إذا كان رقمها موجود
+  if (studentData.motherPhone) {
+    sendWhatsAppNotification(studentData.motherPhone, message);
+  }
 }
+
 function sendWeeklyReportNotification(studentId, studentData, reportData) {
-  const selectedDay = document.getElementById("daySelect").value; // اليوم اللي المستخدم اختاره
+  const selectedDay = document.getElementById("daySelect").value;
 
   const message = `تقرير أسبوعي عن أداء الطالب 📊\n\n`
                + `اليوم: ${selectedDay || "غير محدد"}\n`
@@ -2406,9 +2446,12 @@ function sendWeeklyReportNotification(studentId, studentData, reportData) {
   if (studentData.phone) {
     sendWhatsAppNotification(studentData.phone, message);
   }
+  
+  // إرسال إشعار للأم إذا كان رقمها موجود
+  if (studentData.motherPhone) {
+    sendWhatsAppNotification(studentData.motherPhone, message);
+  }
 }
-
-
 
 // Check for saved theme preference
 if (localStorage.getItem("theme") === "dark") {
@@ -2442,7 +2485,7 @@ function generateStudentId() {
   let id;
   do {
     id = Math.floor(100000 + Math.random() * 900000).toString();
-  } while (allStudentsData[id]); // تأكد من أن الكود غير موجود مسبقاً في أي ملف
+  } while (allStudentsData[id]);
   return id;
 }
 
@@ -2455,11 +2498,7 @@ function checkLogin() {
     loadPosts();
     loadTrash();
     loadWeeklyReports();
-    
-    // تعبئة قائمة الصفوف عند تسجيل الدخول
     fillGradeSelects();
-    
-    // عرض تاريخ اليوم
     const today = new Date();
     document.getElementById('currentDate').textContent = today.toLocaleDateString('ar-EG');
   } else {
@@ -2491,7 +2530,6 @@ function fillGradeSelects() {
     }
   });
   
-  // تعبئة قائمة الأشهر لتقرير المصروفات
   const monthSelect = document.getElementById('feesMonthFilter');
   if (monthSelect) {
     monthSelect.innerHTML = '<option value="">جميع الأشهر</option>';
@@ -2500,7 +2538,6 @@ function fillGradeSelects() {
     });
   }
   
-  // تعبئة قائمة الأيام لتقرير الحضور
   const daySelect = document.getElementById('attendanceDayFilter');
   if (daySelect) {
     daySelect.innerHTML = '<option value="">جميع الأيام</option>';
@@ -2509,7 +2546,6 @@ function fillGradeSelects() {
     });
   }
   
-  // تعبئة قائمة الطلاب للتقرير الأسبوعي
   const studentSelect = document.getElementById('reportStudentSelect');
   if (studentSelect) {
     studentSelect.innerHTML = '<option value="">اختر الطالب</option>';
@@ -2527,10 +2563,8 @@ async function loadAllStudentsData() {
     allStudentsData = {};
     students = {};
     
-    // تحميل الملف الرئيسي أولاً
     await loadStudentsFile("students.json");
     
-    // البحث عن ملفات إضافية
     let fileNumber = 1;
     let moreFilesExist = true;
     
@@ -2550,11 +2584,10 @@ async function loadAllStudentsData() {
       }
     }
     
-    // تحديد الملف الحالي بناءً على حجم البيانات
     determineCurrentFile();
     renderStudentCards();
     updateStats();
-    fillGradeSelects(); // تعبئة قوائم الطلاب بعد تحميل البيانات
+    fillGradeSelects();
   } catch (error) {
     console.error("Error loading students data:", error);
     showError("حدث خطأ أثناء تحميل بيانات الطلاب");
@@ -2573,10 +2606,8 @@ async function loadStudentsFile(fileName) {
     const decodedContent = decodeURIComponent(escape(atob(data.content)));
     const fileData = JSON.parse(decodedContent);
     
-    // دمج البيانات مع البيانات الحالية
     Object.assign(allStudentsData, fileData);
     
-    // إذا كان هذا هو الملف الحالي، قم بتحديث المتغيرات
     if (fileName === currentDataFile) {
       students = fileData;
       sha = data.sha;
@@ -2591,7 +2622,6 @@ async function loadStudentsFile(fileName) {
 
 // دالة لتحديد الملف الحالي المستخدم للتخزين
 function determineCurrentFile() {
-  // تحقق أولاً من الملف الرئيسي
   const mainFileSize = calculateFileSize(allStudentsData);
   if (mainFileSize < MAX_FILE_SIZE) {
     currentDataFile = "students.json";
@@ -2601,7 +2631,6 @@ function determineCurrentFile() {
     return;
   }
   
-  // إذا كان الملف الرئيسي كبير جداً، ابحث عن أحدث ملف إضافي
   let fileNumber = 1;
   let latestFile = null;
   let latestFileSize = 0;
@@ -2610,7 +2639,6 @@ function determineCurrentFile() {
     const fileName = `students_${fileNumber}.json`;
     const fileData = {};
     
-    // جمع بيانات هذا الملف من allStudentsData
     for (const [id, student] of Object.entries(allStudentsData)) {
       if (student._file === fileName) {
         fileData[id] = student;
@@ -2622,7 +2650,7 @@ function determineCurrentFile() {
       latestFile = fileName;
       latestFileSize = size;
     } else if (size === 0) {
-      break; // لا يوجد المزيد من الملفات
+      break;
     }
     
     fileNumber++;
@@ -2639,7 +2667,6 @@ function determineCurrentFile() {
     document.getElementById('currentDataFile').textContent = latestFile;
     document.getElementById('totalStudentsInFile').textContent = Object.keys(students).length;
   } else {
-    // إذا لم نجد ملفاً مناسباً، أنشئ ملفاً جديداً
     createNewDataFile();
   }
 }
@@ -2657,7 +2684,6 @@ function calculateFileSize(data) {
 
 // دالة لإنشاء ملف بيانات جديد
 function createNewDataFile() {
-  // حساب عدد الملفات الموجودة
   let fileNumber = 1;
   while (true) {
     const fileName = `students_${fileNumber}.json`;
@@ -2745,7 +2771,6 @@ function renderStudentCards(filterGrade = null) {
 
     studentCount++;
     
-    // تحديد فئة المستوى لتنسيق العرض
     let levelClass = '';
     if (s.info === "ضعيف") levelClass = "level-weak";
     else if (s.info === "مقبول") levelClass = "level-acceptable";
@@ -2753,7 +2778,6 @@ function renderStudentCards(filterGrade = null) {
     else if (s.info === "جيد جدا") levelClass = "level-very-good";
     else if (s.info === "ممتاز") levelClass = "level-excellent";
     
-    // إضافة صورة الطالب إذا كانت موجودة
     let imageThumb = '';
     if (s.image) {
       imageThumb = `<img src="${s.image}" class="student-image-thumb" alt="صورة الطالب">`;
@@ -2805,7 +2829,6 @@ function showAllStudents() {
 function showStudentDetails(id) {
   const student = students[id];
   
-  // Generate QR code if phone number exists
   let qrCodeHtml = '';
   if (student.phone) {
     qrCodeHtml = `
@@ -2816,7 +2839,6 @@ function showStudentDetails(id) {
     `;
   }
   
-  // Generate image if exists
   let imageHtml = '';
   if (student.image) {
     imageHtml = `
@@ -2826,10 +2848,8 @@ function showStudentDetails(id) {
     `;
   }
   
-  // Generate student ID card
   let studentCardHtml = generateStudentIdCard(id, student);
   
-  // Generate notes section
   let notesHtml = `
     <div class="notes-container">
       <div class="notes-header">
@@ -2865,6 +2885,10 @@ function showStudentDetails(id) {
             <span class="student-info-value">${student.main}</span>
           </div>
           <div class="student-info-item">
+            <span class="student-info-label"><i class="fas fa-school"></i> المدرسة:</span>
+            <span class="student-info-value">${student.school || '-'}</span>
+          </div>
+          <div class="student-info-item">
             <span class="student-info-label"><i class="fas fa-calendar-day"></i> اليوم:</span>
             <span class="student-info-value">${student.day || '-'}</span>
           </div>
@@ -2874,8 +2898,14 @@ function showStudentDetails(id) {
           </div>
           ${student.phone ? `
           <div class="student-info-item">
-            <span class="student-info-label"><i class="fas fa-phone"></i> رقم ولي الأمر:</span>
+            <span class="student-info-label"><i class="fas fa-phone"></i> رقم ولي الأمر (الأب):</span>
             <span class="student-info-value">${student.phone}</span>
+          </div>
+          ` : ''}
+          ${student.motherPhone ? `
+          <div class="student-info-item">
+            <span class="student-info-label"><i class="fas fa-phone"></i> رقم ولي الأمر (الأم):</span>
+            <span class="student-info-value">${student.motherPhone}</span>
           </div>
           ` : ''}
           ${student.group ? `
@@ -2937,7 +2967,6 @@ function showStudentDetails(id) {
   
   document.getElementById('studentDetailContent').innerHTML = html;
   
-  // Initialize QR code if phone exists
   if (student.phone) {
     new QRCode(document.getElementById(`qr-code-${id}`), {
       text: JSON.stringify({
@@ -2953,7 +2982,6 @@ function showStudentDetails(id) {
       correctLevel: QRCode.CorrectLevel.H
     });
     
-    // QR code for the card
     const cardQrCodeDiv = document.getElementById(`qr-code-card-${id}`);
     if (cardQrCodeDiv) {
       new QRCode(cardQrCodeDiv, {
@@ -3004,13 +3032,23 @@ function generateStudentIdCard(id, student) {
             <span>${student.main}</span>
           </div>
           <div class="student-id-card-info-item">
+            <span class="student-id-card-info-label">المدرسة:</span>
+            <span>${student.school || '-'}</span>
+          </div>
+          <div class="student-id-card-info-item">
             <span class="student-id-card-info-label">اليوم:</span>
             <span>${student.day || '-'}</span>
           </div>
           ${student.phone ? `
           <div class="student-id-card-info-item">
-            <span class="student-id-card-info-label">رقم ولي الأمر:</span>
+            <span class="student-id-card-info-label">رقم ولي الأمر (الأب):</span>
             <span>${student.phone}</span>
+          </div>
+          ` : ''}
+          ${student.motherPhone ? `
+          <div class="student-id-card-info-item">
+            <span class="student-id-card-info-label">رقم ولي الأمر (الأم):</span>
+            <span>${student.motherPhone}</span>
           </div>
           ` : ''}
           ${student.group ? `
@@ -3044,7 +3082,6 @@ function generateStudentIdCard(id, student) {
   `;
 }
 
-// دالة مسح QR Code
 function scanQRCode(studentId = null) {
   Swal.fire({
     title: 'مسح QR Code',
@@ -3098,7 +3135,6 @@ function scanQRCode(studentId = null) {
   });
 }
 
-// إيقاف الكاميرا
 function stopCamera(video) {
   if (video && video.srcObject) {
     video.srcObject.getTracks().forEach(track => track.stop());
@@ -3106,16 +3142,11 @@ function stopCamera(video) {
   }
 }
 
-// دالة بعد قراءة الكود (يمكن تعديلها حسب الاستخدام)
 function handleScannedCode(data) {
   console.log('تم قراءة الكود:', data);
-  // هنا يمكنك تنفيذ أي شيء بعد قراءة QR، مثلاً:
-  // fetchStudentInfo(data); أو فتح صفحة الطالب
 }
 
-// دالة محاكاة مسح QR Code
 function mockQRScan() {
-  // اختيار طالب عشوائي للمحاكاة
   const studentIds = Object.keys(students);
   if (studentIds.length === 0) {
     Swal.fire('لا يوجد طلاب', 'لا يوجد طلاب مسجلين في النظام', 'warning');
@@ -3127,7 +3158,6 @@ function mockQRScan() {
   Swal.close();
 }
 
-// دالة معالجة مسح QR Code
 function processQRCodeScan(studentId) {
   if (!students[studentId]) {
     Swal.fire('خطأ', 'كود الطالب غير صحيح', 'error');
@@ -3138,13 +3168,11 @@ function processQRCodeScan(studentId) {
   const today = new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
   const currentDate = new Date().toLocaleDateString('ar-EG');
   
-  // تسجيل حضور الطالب
   if (!student.attendance) {
     student.attendance = {};
   }
   student.attendance[today] = 'حاضر';
   
-  // تسجيل تاريخ الحضور
   if (!student.attendanceDates) {
     student.attendanceDates = [];
   }
@@ -3152,10 +3180,8 @@ function processQRCodeScan(studentId) {
     student.attendanceDates.push(currentDate);
   }
   
-  // تحديد المجموعة (نفترض أن المجموعة مخزنة في خاصية group)
   const group = student.group || 'default';
   
-  // تحديد الطلاب الغائبين في نفس المجموعة
   let absentStudents = [];
   for (const [id, s] of Object.entries(students)) {
     if (id !== studentId && s.group === group && (!s.attendance || s.attendance[today] !== 'حاضر')) {
@@ -3167,31 +3193,25 @@ function processQRCodeScan(studentId) {
     }
   }
 
-  // هنا يمكنك تنفيذ أي شيء بعد معالجة الحضور، مثلاً:
-  // تحديث واجهة المستخدم أو إرسال البيانات إلى الخادم
   console.log('الطلاب الغائبين:', absentStudents);
 }
 
-// دالة لتوسيع الصورة في modal
 function expandImage(img) {
     if (!img.src) return;
     document.getElementById('expandedImage').src = img.src;
     document.getElementById('imageModal').style.display = 'block';
 }
 
-// إغلاق modal الصورة
 function closeImageModal() {
     document.getElementById('imageModal').style.display = 'none';
 }
 
-// إغلاق جميع النوافذ المنبثقة
 function closeModal() {
     document.querySelectorAll('.modal').forEach(modal => {
         modal.style.display = 'none';
     });
 }
 
-// إظهار نافذة إضافة طالب جديد
 function showAddModal() {
     currentStudentId = null;
     document.getElementById('modalTitle').innerHTML = '<i class="fas fa-user-plus"></i> إضافة طالب جديد';
@@ -3199,6 +3219,8 @@ function showAddModal() {
     document.getElementById('studentName').value = '';
     document.getElementById('studentGrade').selectedIndex = 0;
     document.getElementById('studentPhone').value = '';
+    document.getElementById('motherPhone').value = '';
+    document.getElementById('schoolName').value = '';
     document.getElementById('studentday').selectedIndex = 0;
     document.getElementById('studentLevel').selectedIndex = 0;
     document.getElementById('studentImagePreview').style.display = 'none';
@@ -3208,7 +3230,6 @@ function showAddModal() {
     document.getElementById('studentModal').style.display = 'block';
 }
 
-// إظهار نافذة تعديل بيانات طالب
 function showEditModal(id) {
     currentStudentId = id;
     const s = students[id];
@@ -3217,6 +3238,8 @@ function showEditModal(id) {
     document.getElementById('studentName').value = s.name || '';
     document.getElementById('studentGrade').value = s.main || '';
     document.getElementById('studentPhone').value = s.phone || '';
+    document.getElementById('motherPhone').value = s.motherPhone || '';
+    document.getElementById('schoolName').value = s.school || '';
     document.getElementById('studentday').value = s.day || '';
     document.getElementById('studentLevel').value = s.info || '';
     if (s.image) {
@@ -3231,7 +3254,6 @@ function showEditModal(id) {
     document.getElementById('studentModal').style.display = 'block';
 }
 
-// معاينة صورة الطالب قبل الحفظ
 function previewStudentImage() {
     const input = document.getElementById('studentImage');
     if (input.files && input.files[0]) {
@@ -3246,7 +3268,6 @@ function previewStudentImage() {
     }
 }
 
-// حذف صورة الطالب
 function removeImage() {
     document.getElementById('studentImagePreview').src = '';
     document.getElementById('studentImagePreview').style.display = 'none';
@@ -3255,12 +3276,13 @@ function removeImage() {
     studentImageFile = null;
 }
 
-// حفظ بيانات الطالب (إضافة أو تعديل)
 document.getElementById('saveStudentBtn').onclick = async function() {
     const id = document.getElementById('studentId').value;
     const name = document.getElementById('studentName').value.trim();
     const grade = document.getElementById('studentGrade').value;
     const phone = document.getElementById('studentPhone').value.trim();
+    const motherPhone = document.getElementById('motherPhone').value.trim();
+    const school = document.getElementById('schoolName').value.trim();
     const day = document.getElementById('studentday').value;
     const level = document.getElementById('studentLevel').value;
     let image = document.getElementById('studentImagePreview').src || '';
@@ -3270,27 +3292,25 @@ document.getElementById('saveStudentBtn').onclick = async function() {
         return;
     }
 
-    // إذا كانت الصورة معاينة افتراضية فارغة
     if (image.includes('data:') && image.length < 30) image = '';
 
     const studentData = {
         name: name,
         main: grade,
         phone: phone,
+        motherPhone: motherPhone,
+        school: school,
         day: day,
         info: level,
         image: image,
         _file: currentDataFile
     };
 
-    // إضافة أو تعديل
     students[id] = studentData;
     allStudentsData[id] = studentData;
 
-    // إشعار واتساب عند إضافة جديد
     if (!currentStudentId) sendNewStudentNotification(id, studentData);
 
-    // تسجيل الحضور في اليوم المحدد للطالب الجديد
     if (!currentStudentId && day) {
         if (!students[id].attendance) students[id].attendance = {};
         students[id].attendance[day] = 'حاضر';
@@ -3302,7 +3322,6 @@ document.getElementById('saveStudentBtn').onclick = async function() {
     fillGradeSelects();
 };
 
-// إظهار نافذة حذف طالب
 function showDeleteModal(id) {
     deleteStudentId = id;
     document.getElementById('deleteStudentSelectContainer').style.display = 'block';
@@ -3325,13 +3344,11 @@ function showDeleteModal(id) {
     document.getElementById('deleteModal').style.display = 'block';
 }
 
-// تأكيد حذف الطالب
 async function confirmDelete() {
     if (!deleteStudentId || !students[deleteStudentId]) {
         Swal.fire('خطأ', 'يرجى اختيار الطالب للحذف', 'error');
         return;
     }
-    // نقل الطالب لسلة المهملات
     trash[deleteStudentId] = students[deleteStudentId];
     delete students[deleteStudentId];
     delete allStudentsData[deleteStudentId];
@@ -3340,14 +3357,12 @@ async function confirmDelete() {
     renderStudentCards();
 }
 
-// إظهار نافذة الملاحظات
 function showNotesModal(id) {
     currentStudentId = id;
     document.getElementById('notesContent').value = students[id].notes || '';
     document.getElementById('notesModal').style.display = 'block';
 }
 
-// حفظ الملاحظات
 async function saveNotes() {
     if (!currentStudentId || !students[currentStudentId]) return;
     students[currentStudentId].notes = document.getElementById('notesContent').value;
@@ -3358,7 +3373,6 @@ async function saveNotes() {
     renderStudentCards();
 }
 
-// إظهار نافذة المنشور الجديد
 function showPostModal() {
     currentPostId = null;
     document.getElementById('postModalTitle').innerHTML = '<i class="fas fa-plus"></i> منشور جديد';
@@ -3371,7 +3385,6 @@ function showPostModal() {
     document.getElementById('postModal').style.display = 'block';
 }
 
-// معاينة صورة المنشور
 function previewPostImage() {
     const input = document.getElementById('postImageInput');
     if (input.files && input.files[0]) {
@@ -3386,7 +3399,6 @@ function previewPostImage() {
     }
 }
 
-// حذف صورة المنشور
 function removePostImage() {
     document.getElementById('postImagePreview').src = '';
     document.getElementById('postImagePreview').style.display = 'none';
@@ -3395,7 +3407,6 @@ function removePostImage() {
     postImageFile = null;
 }
 
-// حفظ المنشور
 document.getElementById('savePostBtn').onclick = async function() {
     const title = document.getElementById('editPostTitle').value.trim();
     const content = document.getElementById('editPostContent').value.trim();
@@ -3417,12 +3428,10 @@ document.getElementById('savePostBtn').onclick = async function() {
     renderPosts();
 };
 
-// إغلاق نافذة المنشور
 function closePostModal() {
     document.getElementById('postModal').style.display = 'none';
 }
 
-// عرض المنشورات
 function renderPosts() {
     let html = '';
     for (let id in posts) {
@@ -3444,7 +3453,6 @@ function renderPosts() {
     document.getElementById('postsList').innerHTML = html || '<p style="text-align:center;">لا توجد منشورات حالياً</p>';
 }
 
-// حفظ المنشورات في GitHub
 async function savePostsToGitHub() {
     const token = document.getElementById('token').value.trim();
     if (!token) {
@@ -3475,7 +3483,6 @@ async function savePostsToGitHub() {
     });
 }
 
-// حفظ جميع البيانات في GitHub
 async function saveToGitHub() {
     const token = document.getElementById('token').value.trim();
     if (!token) {
@@ -3483,7 +3490,6 @@ async function saveToGitHub() {
         return;
     }
     localStorage.setItem('gh_token', token);
-    // حفظ ملف الطلاب
     const studentsContent = btoa(unescape(encodeURIComponent(JSON.stringify(students, null, 2))));
     let shaVal = sha;
     try {
@@ -3505,7 +3511,6 @@ async function saveToGitHub() {
             sha: shaVal
         })
     });
-    // حفظ سلة المهملات
     const trashContent = btoa(unescape(encodeURIComponent(JSON.stringify(trash, null, 2))));
     let trashSha = '';
     try {
@@ -3530,7 +3535,6 @@ async function saveToGitHub() {
     Swal.fire('تم الحفظ', 'تم حفظ البيانات بنجاح في GitHub', 'success');
 }
 
-// إظهار سلة المهملات
 function showTrash() {
     let html = '';
     for (let id in trash) {
@@ -3556,7 +3560,6 @@ function showTrash() {
     document.getElementById('trashModal').style.display = 'block';
 }
 
-// استعادة طالب من سلة المهملات
 async function restoreStudent(id) {
     if (!trash[id]) return;
     students[id] = trash[id];
@@ -3567,7 +3570,6 @@ async function restoreStudent(id) {
     renderStudentCards();
 }
 
-// حذف طالب نهائياً من سلة المهملات
 async function deleteStudentForever(id) {
     if (!trash[id]) return;
     delete trash[id];
@@ -3575,7 +3577,6 @@ async function deleteStudentForever(id) {
     showTrash();
 }
 
-// بحث عن طالب بالكود أو الاسم أو رقم الهاتف
 function searchStudent() {
     const searchTerm = document.getElementById('searchId').value.trim().toLowerCase();
     if (!searchTerm) {
@@ -3594,7 +3595,7 @@ function searchStudent() {
             showStudentDetails(id);
             found = true;
             break;
-        } else if (s.phone && s.phone.includes(searchTerm)) {
+        } else if ((s.phone && s.phone.includes(searchTerm)) || (s.motherPhone && s.motherPhone.includes(searchTerm))) {
             showStudentDetails(id);
             found = true;
             break;
@@ -3606,28 +3607,28 @@ function searchStudent() {
     }
 }
 
-// مشاركة بيانات الطالب عبر واتساب
 function shareStudentViaWhatsapp(id) {
     if (!students[id]) return;
     const s = students[id];
-    const msg = `بيانات الطالب:\nالاسم: ${s.name}\nالكود: ${id}\nالصف: ${s.main}\nاليوم: ${s.day || 'غير محدد'}\n${s.phone ? 'رقم ولي الأمر: ' + s.phone : ''}`;
+    const msg = `بيانات الطالب:\nالاسم: ${s.name}\nالكود: ${id}\nالصف: ${s.main}\nالمدرسة: ${s.school || 'غير محدد'}\nاليوم: ${s.day || 'غير محدد'}\n${s.phone ? 'رقم ولي الأمر (الأب): ' + s.phone : ''}\n${s.motherPhone ? 'رقم ولي الأمر (الأم): ' + s.motherPhone : ''}`;
     sendWhatsAppNotification(s.phone, msg);
+    if (s.motherPhone) {
+        sendWhatsAppNotification(s.motherPhone, msg);
+    }
 }
 
-// مشاركة بيانات الطالب عبر Telegram (ماسنجر)
 function shareStudentViaTelegram(id) {
     if (!students[id]) return;
     const s = students[id];
-    const msg = `بيانات الطالب:\nالاسم: ${s.name}\nالكود: ${id}\nالصف: ${s.main}\nاليوم: ${s.day || 'غير محدد'}\n${s.phone ? 'رقم ولي الأمر: ' + s.phone : ''}`;
+    const msg = `بيانات الطالب:\nالاسم: ${s.name}\nالكود: ${id}\nالصف: ${s.main}\nالمدرسة: ${s.school || 'غير محدد'}\nاليوم: ${s.day || 'غير محدد'}\n${s.phone ? 'رقم ولي الأمر (الأب): ' + s.phone : ''}\n${s.motherPhone ? 'رقم ولي الأمر (الأم): ' + s.motherPhone : ''}`;
     const url = `https://t.me/share/url?url=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
 }
 
-// مشاركة بيانات الطالب بشكل عام
 function shareStudent(id) {
     if (!students[id]) return;
     const s = students[id];
-    const msg = `بيانات الطالب:\nالاسم: ${s.name}\nالكود: ${id}\nالصف: ${s.main}\nاليوم: ${s.day || 'غير محدد'}\n${s.phone ? 'رقم ولي الأمر: ' + s.phone : ''}`;
+    const msg = `بيانات الطالب:\nالاسم: ${s.name}\nالكود: ${id}\nالصف: ${s.main}\nالمدرسة: ${s.school || 'غير محدد'}\nاليوم: ${s.day || 'غير محدد'}\n${s.phone ? 'رقم ولي الأمر (الأب): ' + s.phone : ''}\n${s.motherPhone ? 'رقم ولي الأمر (الأم): ' + s.motherPhone : ''}`;
     if (navigator.share) {
         navigator.share({
             title: 'بيانات الطالب',
@@ -3639,7 +3640,6 @@ function shareStudent(id) {
     }
 }
 
-// تحميل بطاقة الطالب كصورة
 function downloadStudentCard(id) {
     const card = document.getElementById(`student-card-${id}`);
     if (!card) return;
@@ -3650,7 +3650,6 @@ function downloadStudentCard(id) {
     });
 }
 
-// إظهار نافذة الحضور
 function showAttendancePopup(id) {
     currentPopupStudentId = id;
     const s = students[id];
@@ -3666,12 +3665,10 @@ function showAttendancePopup(id) {
     document.getElementById('attendancePopup').style.display = 'flex';
 }
 
-// إغلاق نافذة الحضور
 function closeAttendancePopup() {
     document.getElementById('attendancePopup').style.display = 'none';
 }
 
-// تغيير حالة الحضور ليوم معين
 function toggleAttendance(id, day) {
     const s = students[id];
     if (!s.attendance) s.attendance = {};
@@ -3680,14 +3677,12 @@ function toggleAttendance(id, day) {
     showAttendancePopup(id);
 }
 
-// حفظ الحضور
 async function saveAttendance() {
     await saveToGitHub();
     closeAttendancePopup();
     renderStudentCards();
 }
 
-// إظهار نافذة المصروفات
 function showFeesPopup(id) {
     currentPopupStudentId = id;
     const s = students[id];
@@ -3703,12 +3698,10 @@ function showFeesPopup(id) {
     document.getElementById('feesPopup').style.display = 'flex';
 }
 
-// إغلاق نافذة المصروفات
 function closeFeesPopup() {
     document.getElementById('feesPopup').style.display = 'none';
 }
 
-// تغيير حالة المصروفات لشهر معين
 function toggleFees(id, month) {
     const s = students[id];
     if (!s.fees) s.fees = {};
@@ -3717,14 +3710,12 @@ function toggleFees(id, month) {
     showFeesPopup(id);
 }
 
-// حفظ المصروفات
 async function saveFees() {
     await saveToGitHub();
     closeFeesPopup();
     renderStudentCards();
 }
 
-// تحديث الإحصائيات
 function updateStats() {
     document.getElementById('totalStudentsCount').textContent = Object.keys(students).length;
     let present = 0, absent = 0, paid = 0, unpaid = 0;
@@ -3749,7 +3740,6 @@ function updateStats() {
     document.getElementById('unpaidFeesCount').textContent = unpaid;
 }
 
-// تبويبات الصفحة
 function switchTab(tab) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -3765,7 +3755,6 @@ function switchTab(tab) {
     }
 }
 
-// إظهار تقرير معين
 function showReports(type) {
     document.querySelectorAll('.report-section').forEach(s => s.classList.remove('active'));
     if (type === 'fees') document.getElementById('feesReport').classList.add('active');
@@ -3774,21 +3763,18 @@ function showReports(type) {
     else if (type === 'weekly') document.getElementById('weeklyReport').classList.add('active');
 }
 
-// تصدير تقرير المصروفات إلى Excel
 function exportToExcel() {
     const table = document.getElementById('feesReportTable');
     const wb = XLSX.utils.table_to_book(table, {sheet:"تقرير المصروفات"});
     XLSX.writeFile(wb, 'fees_report.xlsx');
 }
 
-// تصدير تقرير الحضور إلى Excel
 function exportAttendanceToExcel() {
     const table = document.getElementById('attendanceReportTable');
     const wb = XLSX.utils.table_to_book(table, {sheet:"تقرير الحضور"});
     XLSX.writeFile(wb, 'attendance_report.xlsx');
 }
 
-// تصفية تقرير المصروفات
 function filterFeesReport() {
     const grade = document.getElementById('feesGradeFilter').value;
     const month = document.getElementById('feesMonthFilter').value;
@@ -3812,7 +3798,6 @@ function filterFeesReport() {
     document.getElementById('feesReportBody').innerHTML = html;
 }
 
-// تصفية تقرير الحضور
 function filterAttendanceReport() {
     const grade = document.getElementById('attendanceGradeFilter').value;
     const day = document.getElementById('attendanceDayFilter').value;
@@ -3836,13 +3821,11 @@ function filterAttendanceReport() {
     document.getElementById('attendanceReportBody').innerHTML = html;
 }
 
-// إظهار نموذج التقرير الأسبوعي لطالب معين
 function showWeeklyReportForm(id) {
     document.getElementById('reportStudentSelect').value = id;
     document.getElementById('weeklyReport').classList.add('active');
 }
 
-// معاينة التقرير الأسبوعي
 document.querySelectorAll('#reportStudentSelect, #reportDate, #reportAttendance, #reportHomework, #reportWords, #reportTestScore, #reportNotes').forEach(el => {
     el && el.addEventListener('input', updateWeeklyReportPreview);
 });
@@ -3855,7 +3838,6 @@ function updateWeeklyReportPreview() {
     document.getElementById('previewNotes').textContent = document.getElementById('reportNotes').value || 'لا توجد ملاحظات';
 }
 
-// مسح نموذج التقرير الأسبوعي
 function clearReportForm() {
     document.getElementById('reportStudentSelect').selectedIndex = 0;
     document.getElementById('reportDate').value = '';
@@ -3867,7 +3849,6 @@ function clearReportForm() {
     updateWeeklyReportPreview();
 }
 
-// حفظ التقرير الأسبوعي
 async function saveWeeklyReport() {
     const studentId = document.getElementById('reportStudentSelect').value;
     if (!studentId || !students[studentId]) {
@@ -3890,7 +3871,6 @@ async function saveWeeklyReport() {
     Swal.fire('تم الحفظ', 'تم حفظ التقرير الأسبوعي بنجاح', 'success');
 }
 
-// إرسال التقرير الأسبوعي عبر واتساب
 function sendReportToWhatsApp() {
     const studentId = document.getElementById('reportStudentSelect').value;
     if (!studentId || !students[studentId]) return;
@@ -3905,7 +3885,6 @@ function sendReportToWhatsApp() {
     sendWeeklyReportNotification(studentId, students[studentId], reportData);
 }
 
-// حفظ التقارير الأسبوعية في GitHub
 async function saveWeeklyReportsToGitHub() {
     const token = document.getElementById('token').value.trim();
     if (!token) {
@@ -3936,7 +3915,6 @@ async function saveWeeklyReportsToGitHub() {
     });
 }
 
-// عرض قائمة التقارير الأسبوعية
 function renderWeeklyReportsList() {
     let html = '';
     for (let id in weeklyReports) {
@@ -3956,7 +3934,6 @@ function renderWeeklyReportsList() {
     document.getElementById('reportsListContainer').innerHTML = html || '<p style="text-align:center;">لا توجد تقارير محفوظة</p>';
 }
 
-// تصفية الطلاب حسب الصف
 function showGradeModal() {
     Swal.fire({
         title: 'تصفية الطلاب حسب الصف',
@@ -3980,7 +3957,6 @@ function showGradeModal() {
     });
 }
 
-// تحميل البيانات عند فتح الصفحة إذا كان مسجل دخول
 window.onload = function() {
     if (localStorage.getItem("isLoggedIn") === "true") {
         document.getElementById("loginScreen").style.display = "none";
@@ -3994,7 +3970,6 @@ window.onload = function() {
     }
 };
 
-// إظهار رسالة تحميل
 function showLoading(show) {
     if (show) {
         Swal.fire({
@@ -4011,11 +3986,9 @@ function showLoading(show) {
     }
 }
 
-// إظهار رسالة خطأ
 function showError(msg) {
     Swal.fire('خطأ', msg, 'error');
 }
-
 </script>
 </body>
 </html>
