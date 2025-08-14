@@ -2053,6 +2053,27 @@
           <option value="ممتاز">ممتاز</option>
         </select>
       </div>
+      
+      <div class="form-group">
+        <label><i class="fas fa-image"></i> صورة الطالب</label>
+        <div class="image-upload-container">
+          <div class="image-preview-wrapper">
+            <img id="studentImagePreview" class="image-preview" alt="معاينة الصورة" onclick="expandImage(this)">
+            <div class="image-actions" id="imageActions">
+              <button type="button" class="btn btn-small btn-danger" onclick="removeImage()">
+                <i class="fas fa-trash"></i> حذف
+              </button>
+              <button type="button" class="btn btn-small btn-success" onclick="document.getElementById('studentImage').click()">
+                <i class="fas fa-sync"></i> تغيير
+              </button>
+            </div>
+          </div>
+          <button type="button" class="btn upload-btn">
+            <i class="fas fa-upload"></i> اختر صورة
+            <input type="file" id="studentImage" accept="image/*" onchange="previewStudentImage()" style="display: none;">
+          </button>
+        </div>
+      </div>
     </div>
     
     <div class="modal-footer">
@@ -2169,6 +2190,10 @@
                 </button>
               </div>
             </div>
+            <button class="btn upload-btn">
+              <i class="fas fa-upload"></i> اختر صورة
+              <input type="file" id="postImageInput" accept="image/*" onchange="previewPostImage()">
+            </button>
           </div>
         </div>
       </div>
