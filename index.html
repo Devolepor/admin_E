@@ -1674,6 +1674,203 @@
       font-style: italic;
       color: var(--text-light);
     }
+    /* أنماط لوحة الحضور والغياب - نسخة مطورة */
+.attendance-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-bottom: 2px solid var(--gray-light);
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.filter-section {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-section select {
+  flex: 1;
+  min-width: 150px;
+  padding: 10px 15px;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  background: var(--light-bg);
+  font-size: 14px;
+}
+
+.stats-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: var(--light-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 25px;
+  background: var(--white);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 120px;
+  justify-content: center;
+}
+
+.stat-label {
+  font-weight: bold;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.stat-value {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.stat-value.present {
+  color: var(--success-color);
+}
+
+.stat-value.absent {
+  color: var(--danger-color);
+}
+
+.attendance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.students-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.student-item {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.student-item.present {
+  border-right: 4px solid var(--success-color);
+}
+
+.student-item.absent {
+  border-right: 4px solid var(--danger-color);
+}
+
+.student-info {
+  flex: 1;
+}
+
+.student-name {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.student-id, .student-grade, .student-group {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.attendance-actions .btn-small {
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.attendance-actions .btn-small.active {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px currentColor;
+}
+
+.no-whatsapp-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 2px solid var(--gray-light);
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.no-whatsapp-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.student-item.no-whatsapp {
+  background: #fff8e1;
+  border-right: 4px solid var(--warning-color);
+}
+
+@media (max-width: 768px) {
+  .students-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .student-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .attendance-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .filter-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .stats-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-item {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
   </style>
 </head>
 <body>
@@ -4560,9 +4757,693 @@ function showLoading(show) {
     }
 }
 
+// دالة لعرض نموذج الملاحظات مع إخفاء باقي الواجهات
+function showNotesModal(id) {
+    currentStudentId = id;
+    
+    // إخفاء جميع الواجهات
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = 'none';
+    });
+    
+    // تعبئة محتوى الملاحظات الحالية
+    document.getElementById('notesContent').value = students[id].notes || '';
+    
+    // إنشاء واجهة ملاحظات مخصصة
+    const notesModal = document.createElement('div');
+    notesModal.className = 'modal';
+    notesModal.id = 'customNotesModal';
+    notesModal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-sticky-note"></i> ملاحظات الطالب: ${students[id].name}</h3>
+                <span class="close" onclick="closeNotesModal()">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea id="notesContent" rows="8" placeholder="أدخل ملاحظات عن الطالب..." 
+                              style="width: 100%; border-radius: 8px; padding: 15px; border: 1px solid var(--gray-light);"></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" onclick="closeNotesModal()">
+                    <i class="fas fa-times"></i> إغلاق
+                </button>
+                <button class="btn btn-success" onclick="saveNotes()">
+                    <i class="fas fa-save"></i> حفظ الملاحظات
+                </button>
+                <button class="btn btn-primary" onclick="showAllNotes()">
+                    <i class="fas fa-list"></i> عرض جميع الملاحظات
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notesModal);
+    document.getElementById('customNotesModal').style.display = 'block';
+    document.getElementById('notesContent').value = students[id].notes || '';
+}
+
+// دالة لإغلاق واجهة الملاحظات
+function closeNotesModal() {
+    const modal = document.getElementById('customNotesModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// دالة لعرض جميع الملاحظات في واجهة جانبية
+function showAllNotes(filterGrade = null, filterGroup = null, filterStudent = null) {
+    // إخفاء جميع الواجهات
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = 'none';
+    });
+    
+    // إنشاء واجهة عرض جميع الملاحظات
+    const allNotesModal = document.createElement('div');
+    allNotesModal.className = 'modal';
+    allNotesModal.id = 'allNotesModal';
+    allNotesModal.style.width = '90%';
+    allNotesModal.style.maxWidth = '1000px';
+    
+    let html = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-sticky-note"></i> جميع الملاحظات</h3>
+                <span class="close" onclick="closeAllNotesModal()">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="notes-filter">
+                    <select id="notesGradeFilter" class="form-control">
+                        <option value="">جميع الصفوف</option>
+                        ${grades.map(grade => `<option value="${grade}">${grade}</option>`).join('')}
+                    </select>
+                    
+                    <select id="notesGroupFilter" class="form-control">
+                        <option value="">جميع المجموعات</option>
+                        ${groups.map(group => `<option value="${group}">${group}</option>`).join('')}
+                    </select>
+                    
+                    <input type="text" id="notesStudentFilter" class="form-control" placeholder="بحث بالاسم أو الكود">
+                    
+                    <button class="btn" onclick="filterNotes()">
+                        <i class="fas fa-filter"></i> تصفية
+                    </button>
+                </div>
+                
+                <div class="notes-list" id="notesListContainer">
+                    ${generateNotesList(filterGrade, filterGroup, filterStudent)}
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" onclick="closeAllNotesModal()">
+                    <i class="fas fa-times"></i> إغلاق
+                </button>
+                <button class="btn btn-success" onclick="exportNotesToExcel()">
+                    <i class="fas fa-file-excel"></i> تصدير إلى Excel
+                </button>
+            </div>
+        </div>
+    `;
+    
+    allNotesModal.innerHTML = html;
+    document.body.appendChild(allNotesModal);
+    document.getElementById('allNotesModal').style.display = 'block';
+    
+    // تعيين عوامل التصفية إذا كانت موجودة
+    if (filterGrade) document.getElementById('notesGradeFilter').value = filterGrade;
+    if (filterGroup) document.getElementById('notesGroupFilter').value = filterGroup;
+    if (filterStudent) document.getElementById('notesStudentFilter').value = filterStudent;
+}
+
+// دالة لتوليد قائمة الملاحظات
+function generateNotesList(gradeFilter = null, groupFilter = null, studentFilter = null) {
+    let html = '';
+    let hasNotes = false;
+    
+    for (let id in students) {
+        const s = students[id];
+        
+        // تطبيق عوامل التصفية
+        if (gradeFilter && s.main !== gradeFilter) continue;
+        if (groupFilter && s.group !== groupFilter) continue;
+        if (studentFilter && 
+            !s.name.includes(studentFilter) && 
+            !id.includes(studentFilter)) continue;
+        
+        if (s.notes) {
+            hasNotes = true;
+            html += `
+                <div class="note-item">
+                    <div class="note-header">
+                        <h4>${s.name} (${id})</h4>
+                        <div class="note-meta">
+                            <span>${s.main}</span>
+                            ${s.group ? `<span>${s.group}</span>` : ''}
+                            <button class="btn btn-small" onclick="showNotesModal('${id}')">
+                                <i class="fas fa-edit"></i> تعديل
+                            </button>
+                        </div>
+                    </div>
+                    <div class="note-content">
+                        ${s.notes}
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    if (!hasNotes) {
+        html = '<div class="no-notes"><i class="fas fa-info-circle"></i> لا توجد ملاحظات مسجلة</div>';
+    }
+    
+    return html;
+}
+
+// دالة لتصفية الملاحظات
+function filterNotes() {
+    const grade = document.getElementById('notesGradeFilter').value;
+    const group = document.getElementById('notesGroupFilter').value;
+    const student = document.getElementById('notesStudentFilter').value;
+    
+    document.getElementById('notesListContainer').innerHTML = generateNotesList(grade, group, student);
+}
+
+// دالة لإغلاق واجهة جميع الملاحظات
+function closeAllNotesModal() {
+    const modal = document.getElementById('allNotesModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// دالة لحفظ الملاحظات
+async function saveNotes() {
+    if (!currentStudentId || !students[currentStudentId]) return;
+    
+    const notesContent = document.getElementById('notesContent').value;
+    students[currentStudentId].notes = notesContent;
+    allStudentsData[currentStudentId].notes = notesContent;
+    
+    // إرسال إشعار إذا كان هناك رقم هاتف
+    sendNotesNotification(currentStudentId, students[currentStudentId], notesContent);
+    
+    await saveToGitHub();
+    
+    Swal.fire({
+        title: 'تم الحفظ',
+        text: 'تم حفظ الملاحظات بنجاح',
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false
+    });
+    
+    closeNotesModal();
+}
+
+// دالة لتصدير الملاحظات إلى Excel
+function exportNotesToExcel() {
+    let notesData = [];
+    
+    for (let id in students) {
+        const s = students[id];
+        if (s.notes) {
+            notesData.push({
+                'كود الطالب': id,
+                'الاسم': s.name,
+                'الصف': s.main,
+                'المجموعة': s.group || '',
+                'الملاحظات': s.notes
+            });
+        }
+    }
+    
+    if (notesData.length === 0) {
+        Swal.fire('تنبيه', 'لا توجد ملاحظات لتصديرها', 'info');
+        return;
+    }
+    
+    const ws = XLSX.utils.json_to_sheet(notesData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "الملاحظات");
+    XLSX.writeFile(wb, 'student_notes.xlsx');
+}
+
+// إضافة زر عرض الملاحظات في الواجهة الجانبية
+function addNotesButtonToSidebar() {
+    const sidebarMenu = document.querySelector('.sidebar-menu');
+    if (sidebarMenu) {
+        const notesItem = document.createElement('li');
+        notesItem.innerHTML = `
+            <a href="#" onclick="showAllNotes()">
+                <i class="fas fa-sticky-note"></i> عرض جميع الملاحظات
+            </a>
+        `;
+        sidebarMenu.appendChild(notesItem);
+    }
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+window.onload = function() {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        document.getElementById("loginScreen").style.display = "none";
+        loadAllStudentsData();
+        loadPosts();
+        loadTrash();
+        loadWeeklyReports();
+        loadGroups();
+        fillGradeSelects();
+        fillGroupSelects();
+        const today = new Date();
+        document.getElementById('currentDate').textContent = today.toLocaleDateString('ar-EG');
+        
+        // إضافة زر الملاحظات للواجهة الجانبية
+        addNotesButtonToSidebar();
+    }
+};
+
+// ... (الكود السابق يبقى كما هو حتى نصل للجزء الذي سنضيفه)
+
+// دالة لعرض واجهة الحضور والغياب
+function showAttendanceDashboard() {
+  // إنشاء واجهة جديدة
+  const attendanceModal = document.createElement('div');
+  attendanceModal.className = 'modal';
+  attendanceModal.id = 'attendanceDashboard';
+  attendanceModal.innerHTML = `
+    <div class="modal-content" style="max-width: 1000px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-calendar-check"></i> لوحة الحضور والغياب</h3>
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      
+      <div class="modal-body">
+        <div class="attendance-controls">
+          <div class="filter-section">
+            <select id="attendanceFilterGrade" class="form-control">
+              <option value="">جميع الصفوف</option>
+              ${grades.map(grade => `<option value="${grade}">${grade}</option>`).join('')}
+            </select>
+            
+            <select id="attendanceFilterGroup" class="form-control">
+              <option value="">جميع المجموعات</option>
+              ${groups.map(group => `<option value="${group}">${group}</option>`).join('')}
+            </select>
+            
+            <select id="attendanceFilterDay" class="form-control">
+              <option value="">اليوم الحالي</option>
+              ${weekDays.map(day => `<option value="${day}">${day}</option>`).join('')}
+            </select>
+            
+            <button class="btn" onclick="filterAttendanceDashboard()">
+              <i class="fas fa-filter"></i> تصفية
+            </button>
+          </div>
+          
+          <div class="stats-section">
+            <div class="stat-item">
+              <span class="stat-label">عدد الطلاب:</span>
+              <span class="stat-value" id="totalStudentsStat">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">الحاضرون:</span>
+              <span class="stat-value present" id="presentStudentsStat">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">الغائبون:</span>
+              <span class="stat-value absent" id="absentStudentsStat">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">لديهم واتساب:</span>
+              <span class="stat-value" id="whatsappStudentsStat">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">بدون واتساب:</span>
+              <span class="stat-value" id="noWhatsappStudentsStat">0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="attendance-actions">
+          <button class="btn btn-success" onclick="markAllPresent()">
+            <i class="fas fa-check-circle"></i> حضور الكل
+          </button>
+          <button class="btn btn-danger" onclick="markAllAbsent()">
+            <i class="fas fa-times-circle"></i> غياب الكل
+          </button>
+          <button class="btn btn-primary" onclick="sendAttendanceNotifications()">
+            <i class="fab fa-whatsapp"></i> إرسال الإشعارات
+          </button>
+          <button class="btn excel-btn" onclick="exportAttendanceDashboard()">
+            <i class="fas fa-file-excel"></i> تصدير Excel
+          </button>
+          <button class="btn" onclick="scanQRForAttendance()">
+            <i class="fas fa-qrcode"></i> مسح QR Code
+          </button>
+        </div>
+        
+        <div class="students-list" id="attendanceStudentsList"></div>
+        
+        <div class="no-whatsapp-section" id="noWhatsappSection" style="display: none;">
+          <h4><i class="fas fa-exclamation-triangle"></i> الطلاب بدون رقم واتساب</h4>
+          <div class="no-whatsapp-list" id="noWhatsappList"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(attendanceModal);
+  document.getElementById('attendanceDashboard').style.display = 'block';
+  
+  // تعيين اليوم الحالي كافتراضي
+  const today = new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
+  document.getElementById('attendanceFilterDay').value = today;
+  
+  // عرض الطلاب
+  filterAttendanceDashboard();
+}
+
+// دالة لتصفية الطلاب في لوحة الحضور
+function filterAttendanceDashboard() {
+  const grade = document.getElementById('attendanceFilterGrade').value;
+  const group = document.getElementById('attendanceFilterGroup').value;
+  const day = document.getElementById('attendanceFilterDay').value || 
+              new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
+  
+  let html = '';
+  let total = 0;
+  let present = 0;
+  let absent = 0;
+  let hasWhatsapp = 0;
+  let noWhatsapp = 0;
+  let noWhatsappHtml = '';
+  
+  for (let id in students) {
+    const s = students[id];
+    
+    // تطبيق الفلتر
+    if (grade && s.main !== grade) continue;
+    if (group && s.group !== group) continue;
+    
+    total++;
+    
+    // حالة الحضور
+    const status = s.attendance && s.attendance[day] ? s.attendance[day] : '';
+    
+    // إحصاءات واتساب
+    if (s.phone || s.motherPhone) {
+      hasWhatsapp++;
+    } else {
+      noWhatsapp++;
+      noWhatsappHtml += `
+        <div class="student-item no-whatsapp">
+          <span>${s.name} (${id})</span>
+          <span>${s.main}</span>
+          <span>${s.group || 'بدون مجموعة'}</span>
+        </div>
+      `;
+    }
+    
+    // تحديث الإحصاءات
+    if (status === 'حاضر') present++;
+    else absent++;
+    
+    // إضافة الطالب للقائمة
+    html += `
+      <div class="student-item ${status === 'حاضر' ? 'present' : status === 'غائب' ? 'absent' : ''}">
+        <div class="student-info">
+          <span class="student-name">${s.name}</span>
+          <span class="student-id">${id}</span>
+          <span class="student-grade">${s.main}</span>
+          <span class="student-group">${s.group || 'بدون مجموعة'}</span>
+        </div>
+        <div class="attendance-actions">
+          <button class="btn btn-small btn-success ${status === 'حاضر' ? 'active' : ''}" 
+                  onclick="markStudentAttendance('${id}', 'حاضر', '${day}')">
+            <i class="fas fa-check"></i> حاضر
+          </button>
+          <button class="btn btn-small btn-danger ${status === 'غائب' ? 'active' : ''}" 
+                  onclick="markStudentAttendance('${id}', 'غائب', '${day}')">
+            <i class="fas fa-times"></i> غائب
+          </button>
+        </div>
+      </div>
+    `;
+  }
+  
+  // تحديث القوائم
+  document.getElementById('attendanceStudentsList').innerHTML = html || '<p>لا توجد طلاب</p>';
+  document.getElementById('noWhatsappList').innerHTML = noWhatsappHtml || '<p>جميع الطلاب لديهم أرقام واتساب</p>';
+  
+  // تحديث الإحصاءات
+  document.getElementById('totalStudentsStat').textContent = total;
+  document.getElementById('presentStudentsStat').textContent = present;
+  document.getElementById('absentStudentsStat').textContent = absent;
+  document.getElementById('whatsappStudentsStat').textContent = hasWhatsapp;
+  document.getElementById('noWhatsappStudentsStat').textContent = noWhatsapp;
+  
+  // إظهار قسم بدون واتساب إذا كان هناك طلاب
+  document.getElementById('noWhatsappSection').style.display = noWhatsapp > 0 ? 'block' : 'none';
+}
+
+// دالة لتسجيل حضور/غياب طالب
+function markStudentAttendance(id, status, day) {
+  if (!students[id]) return;
+  
+  if (!students[id].attendance) students[id].attendance = {};
+  students[id].attendance[day] = status;
+  
+  // تحديث العرض
+  filterAttendanceDashboard();
+}
+
+// دالة لتسجيل حضور جميع الطلاب
+function markAllPresent() {
+  const day = document.getElementById('attendanceFilterDay').value || 
+              new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
+  
+  for (let id in students) {
+    if (!students[id].attendance) students[id].attendance = {};
+    students[id].attendance[day] = 'حاضر';
+  }
+  
+  filterAttendanceDashboard();
+}
+
+// دالة لتسجيل غياب جميع الطلاب
+function markAllAbsent() {
+  const day = document.getElementById('attendanceFilterDay').value || 
+              new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
+  
+  for (let id in students) {
+    if (!students[id].attendance) students[id].attendance = {};
+    students[id].attendance[day] = 'غائب';
+  }
+  
+  filterAttendanceDashboard();
+}
+
+// دالة لإرسال إشعارات الحضور عبر واتساب
+async function sendAttendanceNotifications() {
+  const day = document.getElementById('attendanceFilterDay').value || 
+              new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
+  const date = new Date().toLocaleDateString('ar-EG');
+  const time = new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'});
+  
+  let sentCount = 0;
+  let skippedCount = 0;
+  
+  for (let id in students) {
+    const s = students[id];
+    if (!s.attendance || !s.attendance[day]) continue;
+    
+    const status = s.attendance[day];
+    let message = '';
+    
+    if (status === 'حاضر') {
+      message = `السيد ولي أمر الطالب: ${s.name}\n\n`
+              + `نحيط علمكم أن الطالب ${s.name} قد حضر اليوم ${day}\n`
+              + `المجموعة: ${s.group || 'غير محدد'}\n`
+              + `التاريخ: ${date}\n`
+              + `الوقت: ${time}\n\n`
+              + `نشكركم على متابعتكم`;
+    } else {
+      message = `السيد ولي أمر الطالب: ${s.name}\n\n`
+              + `نحيط علمكم أن الطالب ${s.name} قد غاب اليوم ${day}\n`
+              + `المجموعة: ${s.group || 'غير محدد'}\n`
+              + `التاريخ: ${date}\n\n`
+              + `نرجو التواصل في حال وجود أي استفسار`;
+    }
+    
+    // إرسال للأب إذا كان موجود
+    if (s.phone) {
+      sendWhatsAppNotification(s.phone, message);
+      sentCount++;
+    }
+    
+    // إرسال للأم إذا كان موجود
+    if (s.motherPhone) {
+      sendWhatsAppNotification(s.motherPhone, message);
+      sentCount++;
+    }
+    
+    // إذا لم يكن هناك أي رقم
+    if (!s.phone && !s.motherPhone) {
+      skippedCount++;
+    }
+  }
+  
+  Swal.fire({
+    title: 'تم الإرسال',
+    html: `تم إرسال ${sentCount} إشعار<br>`
+        + `تم تخطي ${skippedCount} طالب بدون رقم واتساب`,
+    icon: 'success'
+  });
+}
+
+// دالة لتصدير بيانات الحضور إلى Excel
+function exportAttendanceDashboard() {
+  const day = document.getElementById('attendanceFilterDay').value || 
+              new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
+  const date = new Date().toLocaleDateString('ar-EG');
+  
+  let data = [];
+  
+  for (let id in students) {
+    const s = students[id];
+    const status = s.attendance && s.attendance[day] ? s.attendance[day] : 'لم يتم التسجيل';
+    
+    data.push({
+      'كود الطالب': id,
+      'الاسم': s.name,
+      'الصف': s.main,
+      'المجموعة': s.group || '',
+      'اليوم': day,
+      'الحالة': status,
+      'رقم ولي الأمر (الأب)': s.phone || '',
+      'رقم ولي الأمر (الأم)': s.motherPhone || ''
+    });
+  }
+  
+  const ws = XLSX.utils.json_to_sheet(data);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "تقرير الحضور");
+  XLSX.writeFile(wb, `attendance_report_${day}_${date.replace(/\//g, '-')}.xlsx`);
+}
+
+// دالة لمسح QR Code لتسجيل الحضور
+async function scanQRForAttendance() {
+  const day = document.getElementById('attendanceFilterDay').value || 
+              new Date().toLocaleDateString('ar-EG', { weekday: 'long' });
+  
+  try {
+    const codeReader = new ZXing.BrowserQRCodeReader();
+    const result = await codeReader.decodeFromInputVideoDevice(undefined, 'video');
+    
+    try {
+      const qrData = JSON.parse(result.text);
+      if (qrData.id && students[qrData.id]) {
+        markStudentAttendance(qrData.id, 'حاضر', day);
+        Swal.fire({
+          title: 'تم التسجيل',
+          html: `تم تسجيل حضور الطالب ${students[qrData.id].name}`,
+          icon: 'success',
+          timer: 2000
+        });
+      }
+    } catch (e) {
+      Swal.fire('خطأ', 'QR Code غير صالح', 'error');
+    }
+  } catch (error) {
+    Swal.fire({
+      title: 'مسح QR Code',
+      html: `
+        <div style="text-align: center;">
+          <video id="qrScanner" style="width: 100%; max-width: 500px; border: 2px solid #1976d2; border-radius: 8px;"></video>
+          <p>يتم الآن تشغيل الكاميرا لمسح QR Code</p>
+        </div>
+      `,
+      showConfirmButton: false,
+      didOpen: () => {
+        const videoElement = document.getElementById('qrScanner');
+        const codeReader = new ZXing.BrowserQRCodeReader();
+        
+        codeReader.decodeFromVideoDevice(undefined, videoElement, (result, err) => {
+          if (result) {
+            try {
+              const qrData = JSON.parse(result.text);
+              if (qrData.id && students[qrData.id]) {
+                markStudentAttendance(qrData.id, 'حاضر', day);
+                Swal.fire({
+                  title: 'تم التسجيل',
+                  html: `تم تسجيل حضور الطالب ${students[qrData.id].name}`,
+                  icon: 'success',
+                  timer: 2000
+                }).then(() => {
+                  codeReader.reset();
+                });
+              }
+            } catch (e) {
+              console.error('QR Code غير صالح', e);
+            }
+          }
+          
+          if (err && !(err instanceof ZXing.NotFoundException)) {
+            console.error('حدث خطأ في القارئ', err);
+          }
+        });
+      },
+      willClose: () => {
+        const codeReader = new ZXing.BrowserQRCodeReader();
+        codeReader.reset();
+      }
+    });
+  }
+}
+
+// إضافة عنصر القائمة الجانبي
+function addAttendanceDashboardToSidebar() {
+  const sidebarMenu = document.querySelector('.sidebar-menu');
+  if (sidebarMenu) {
+    const attendanceItem = document.createElement('li');
+    attendanceItem.innerHTML = `
+      <a href="#" onclick="showAttendanceDashboard()">
+        <i class="fas fa-calendar-check"></i> لوحة الحضور والغياب
+      </a>
+    `;
+    sidebarMenu.appendChild(attendanceItem);
+  }
+}
+
+// تعديل دالة تحميل الصفحة لإضافة العنصر الجانبي
+window.onload = function() {
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    document.getElementById("loginScreen").style.display = "none";
+    loadAllStudentsData();
+    loadPosts();
+    loadTrash();
+    loadWeeklyReports();
+    loadGroups();
+    fillGradeSelects();
+    fillGroupSelects();
+    const today = new Date();
+    document.getElementById('currentDate').textContent = today.toLocaleDateString('ar-EG');
+    
+    // إضافة العناصر الجانبية الجديدة
+    addAttendanceDashboardToSidebar();
+    addNotesButtonToSidebar();
+  }
+};
+
+// ... (بقية الكود السابق يبقى كما هو)
+
 function showError(msg) {
     Swal.fire('خطأ', msg, 'error');
 }
 </script>
 </body>
-</html>
+</html
