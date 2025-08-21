@@ -3,71 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-   <!-- ====== أساسيّات الميتا ====== -->
-   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <title>لوحه تحكم الطلاب  | @developortc - مطوّر ويب وأمن سيبراني محترف</title>
-   <meta name="description" content="Mahmoud Mohamed (المعروف باسم @developortc) - مطوّر ويب محترف ومتخصص في الأمن السيبراني. تصميم مواقع وتطبيقات آمنة وعصرية." />
-   <meta name="keywords" content="مطور ويب, أمن سيبراني, برمجة, تصميم مواقع, تطبيقات, Mahmoud Mohamed, developortc, cybersecurity, web development" />
-   <meta name="author" content="Mahmoud Mohamed (@developortc)" />
-   <link rel="canonical" href="https://devolepor.github.io/developortc/" />
-   <meta name="robots" content="index, follow" />
-
-   <!-- أيقونة الموقع -->
-   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
-   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
-   
-   <!-- Open Graph -->
-   <meta property="og:type" content="website" />
-   <meta property="og:title" content="لوحه تحكم الطلاب  | @developortc - مطوّر ويب وأمن سيبراني" />
-   <meta property="og:description" content="الموقع الرسمي لمحمود محمد (@developortc) - مطوّر ويب وأمن سيبراني محترف. خدمات تطوير وتصميم مواقع وتطبيقات آمنة." />
-   <meta property="og:url" content="https://devolepor.github.io/developortc/" />
-   <meta property="og:image" content="https://github.com/Devolepor/admin_E/blob/main/@developortc.jpeg?raw=true" />
-   <meta property="og:site_name" content="@developortc Portfolio" />
-   <meta property="og:locale" content="ar_SA" />
-
-   <!-- Twitter -->
-   <meta name="twitter:card" content="summary_large_image" />
-   <meta name="twitter:site" content="@developortc" />
-   <meta name="twitter:creator" content="@developortc" />
-   <meta name="twitter:title" content="Mahmoud Mohamed | @developortc - مطوّر ويب وأمن سيبراني" />
-   <meta name="twitter:description" content="الموقع الرسمي لمحمود محمد (@developortc) - مطوّر ويب وأمن سيبراني محترف." />
-   <meta name="twitter:image" content="https://github.com/Devolepor/admin_E/blob/main/@developortc.jpeg?raw=true" />
-
-   <!-- بيانات مُنظّمة (Schema Markup) -->
-   <script type="application/ld+json">
-   {
-     "@context": "https://schema.org",
-     "@type": "Person",
-     "name": "Mahmoud Mohamed",
-     "alternateName": "@developortc",
-     "url": "https://devolepor.github.io/developortc/",
-     "image": "https://github.com/Devolepor/admin_E/blob/main/@developortc.jpeg?raw=true",
-     "jobTitle": "Web Developer and Cybersecurity Specialist",
-     "description": "مطوّر ويب ومتخصص في الأمن السيبراني مع أكثر من 5 سنوات من الخبرة",
-     "email": "mailto:coldenegypt@gmail.com",
-     "telephone": "+201123961290",
-     "address": {
-       "@type": "PostalAddress",
-       "addressRegion": "Sharkia",
-       "addressCountry": "Egypt"
-     },
-     "sameAs": [
-       "https://www.facebook.com/mahmoud.mohamed.706828",
-       "https://t.me/developortc",
-       "https://www.instagram.com/developortc",
-       "https://www.linkedin.com/in/mahmoud-mohamed-b5153a35b"
-     ],
-     "worksFor": {
-       "@type": "Organization",
-       "name": "Freelance"
-     },
-     "knowsAbout": ["Web Development", "Cybersecurity", "JavaScript", "React", "Node.js", "HTML", "CSS"]
-   }
-   </script>
+  <title>لوحة تحكم الطلاب والمنشورات</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -2040,8 +1976,9 @@
   <ul class="sidebar-menu">
     <!-- في القائمة الجانبية -->
      <!-- داخل القائمة الجانبية -->
-    <li><a href="#" onclick="showAllStudents()"><i class="fas fa-eye"></i> إظهار جميع الطلاب</a></li>
-   <li><a href="#" onclick="showQRCodesModal()"><i class="fas fa-qrcode"></i> بطاقات QR Code</a></li>
+<!-- داخل القائمة الجانبية في الجزء العلوي من الكود -->
+<li><a href="#" onclick="showExcelUploadModal()"><i class="fas fa-file-excel"></i> رفع بيانات Excel</a></li>
+<li><a href="#" onclick="showQRCodesModal()"><i class="fas fa-qrcode"></i> بطاقات QR Code</a></li>
     <li><a href="#" onclick="showAddModal()"><i class="fas fa-user-plus"></i> إضافة طالب جديد</a></li>
     <li><a href="#" onclick="showDeleteModal(null)"><i class="fas fa-user-minus"></i> حذف طالب</a></li>
     <li><a href="#" onclick="showAllStudents()"><i class="fas fa-users"></i> عرض جميع الطلاب</a></li>
@@ -2067,6 +2004,10 @@
         <button class="btn" onclick="showGradeModal()"><i class="fas fa-filter"></i> تصفية حسب الصف</button>
         <button class="btn" onclick="showGroupModal()"><i class="fas fa-filter"></i> تصفية حسب المجموعة</button>
         <button class="btn btn-success" onclick="showCreateGroupModal()"><i class="fas fa-plus"></i> إنشاء مجموعة</button>
+        <!-- في قسم header-actions داخل عنصر grade-select -->
+<button class="btn btn-secondary" id="toggleStudentsBtn" onclick="toggleStudentsVisibility()">
+    <i class="fas fa-eye"></i> إظهار الطلاب
+</button>
       </div>
       <button class="btn theme-toggle" id="themeToggle">
         <i class="fas fa-moon"></i> الوضع الليلي
@@ -2108,7 +2049,6 @@
 
     <div id="studentsCount" style="background: var(--white); padding: 15px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span><i class="fas fa-users"></i> عدد الطلاب المعروضين: <span id="studentsCountNumber">0</span></span>
         <span><i class="fas fa-calendar-alt"></i> تاريخ اليوم: <span id="currentDate"></span></span>
       </div>
     </div>
@@ -2531,6 +2471,73 @@
       <button type="button" class="btn btn-success" id="saveStudentBtn">
         <i class="fas fa-save"></i> حفظ الطالب
       </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal لرفع ملف Excel -->
+<div id="excelUploadModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title"><i class="fas fa-file-excel"></i> رفع بيانات الطلاب من Excel</h3>
+      <span class="close" onclick="closeModal()">&times;</span>
+    </div>
+    
+    <div class="modal-body">
+      <div class="file-info">
+        <p><i class="fas fa-info-circle"></i> يجب أن يحتوي ملف Excel على الأعمدة التالية:</p>
+        <ul style="padding-right: 20px; margin-top: 10px;">
+          <li>الاسم (مطلوب)</li>
+          <li>الصف (مطلوب)</li>
+          <li>المجموعة (اختياري)</li>
+          <li>المدرسة (اختياري)</li>
+          <li>رقم ولي الأمر (الأب) (اختياري)</li>
+          <li>رقم ولي الأمر (الأم) (اختياري)</li>
+          <li>اليوم (اختياري)</li>
+        </ul>
+      </div>
+      
+      <div class="form-group" style="margin-top: 20px;">
+        <label for="excelFile"><i class="fas fa-upload"></i> اختر ملف Excel</label>
+        <div class="upload-btn">
+          <i class="fas fa-file-excel"></i> اختر ملف Excel
+          <input type="file" id="excelFile" accept=".xlsx, .xls" onchange="previewExcelFile()">
+        </div>
+        <div id="excelFileName" style="margin-top: 10px; font-size: 14px; color: var(--text-light);"></div>
+      </div>
+      
+      <div id="excelPreview" style="margin-top: 20px; display: none;">
+        <h4><i class="fas fa-table"></i> معاينة البيانات</h4>
+        <div class="table-responsive">
+          <table class="report-table" id="excelPreviewTable">
+            <thead>
+              <tr>
+                <th>الاسم</th>
+                <th>الصف</th>
+                <th>المجموعة</th>
+                <th>المدرسة</th>
+                <th>رقم الأب</th>
+                <th>رقم الأم</th>
+                <th>اليوم</th>
+              </tr>
+            </thead>
+            <tbody id="excelPreviewBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">
+        <i class="fas fa-times"></i> إلغاء
+      </button>
+      <button class="btn btn-success" id="importExcelBtn" onclick="importExcelData()" disabled>
+        <i class="fas fa-upload"></i> استيراد البيانات
+      </button>
+      <a href="#" class="btn excel-btn" onclick="downloadExcelTemplate()">
+        <i class="fas fa-download"></i> تحميل نموذج
+      </a>
     </div>
   </div>
 </div>
@@ -5810,43 +5817,287 @@ function printQRCodes() {
   }, 500);
 }
 
-// دالة لتعيين عدم إظهار الطلاب عند الدخول
+// تعديل دالة renderStudentCards
+function renderStudentCards(filterGrade = null, filterGroup = null) {
+    if (!studentsVisible) {
+        hideAllStudents();
+        return;
+    }
+    
+    let html = '';
+    let studentCount = 0;
+    
+    for (let id in students) {
+        let s = students[id];
+        if (filterGrade && s.main.trim() !== filterGrade.trim()) continue;
+        if (filterGroup && s.group !== filterGroup) continue;
+
+        studentCount++;
+        
+        let groupClass = s.group ? `group-${s.group.replace(' ', '-')}` : '';
+        
+        let imageThumb = '';
+        if (s.image) {
+            imageThumb = `<img src="${s.image}" class="student-image-thumb" alt="صورة الطالب">`;
+        }
+        
+        html += `
+            <div class="student-card ${groupClass}" id="student-card-${id}">
+                ${imageThumb}
+                <i class="fas fa-edit edit-student-btn" onclick="showEditModal('${id}')"></i>
+                <div class="student-header" onclick="showStudentDetails('${id}')">
+                    <div>
+                        <div class="student-name">${s.name}</div>
+                        <div class="student-id">كود: ${id}</div>
+                    </div>
+                    <div>
+                        <div class="student-grade">${s.main}</div>
+                        ${s.group ? `<span class="student-group">${s.group}</span>` : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    document.getElementById('studentsCards').innerHTML = studentCount > 0 ? html : `
+        <div class="no-students">
+            <h3><i class="fas fa-info-circle"></i> لا يوجد طلاب مسجلين حالياً</h3>
+        </div>
+    `;
+    
+    document.getElementById('studentsCountNumber').textContent = studentCount;
+    updateStats();
+}
+
+// حالة عرض الطلاب
+let studentsVisible = false;
+
+// دالة لعرض/إخفاء الطلاب
+function toggleStudentsVisibility() {
+    studentsVisible = !studentsVisible;
+    
+    const btn = document.getElementById('toggleStudentsBtn');
+    if (studentsVisible) {
+        renderStudentCards();
+        btn.innerHTML = '<i class="fas fa-eye-slash"></i> إخفاء الطلاب';
+        btn.classList.remove('btn-secondary');
+        btn.classList.add('btn-warning');
+    } else {
+        hideAllStudents();
+        btn.innerHTML = '<i class="fas fa-eye"></i> إظهار الطلاب';
+        btn.classList.remove('btn-warning');
+        btn.classList.add('btn-secondary');
+    }
+}
+
+// إخفاء الطلاب عند تحميل الصفحة
 function hideStudentsOnLoad() {
-  document.getElementById('studentsCards').innerHTML = `
-    <div class="no-students">
-      <h3><i class="fas fa-eye-slash"></i> الطلاب مخفية حالياً</h3>
-      <p>استخدم زر "إظهار جميع الطلاب" في القائمة الجانبية لعرض الطلاب</p>
-      <button class="btn btn-success" onclick="showAllStudents()">
-        <i class="fas fa-eye"></i> إظهار الطلاب
-      </button>
-    </div>
-  `;
-  document.getElementById('studentsCountNumber').textContent = '0';
+    studentsVisible = false;
+    const btn = document.getElementById('toggleStudentsBtn');
+    btn.innerHTML = '<i class="fas fa-eye"></i> إظهار الطلاب';
+    btn.classList.add('btn-secondary');
+    
+    document.getElementById('studentsCards').innerHTML = `
+        <div class="no-students">
+            <h3><i class="fas fa-eye-slash"></i> الطلاب مخفية حالياً</h3>
+            <p>استخدم زر "إظهار الطلاب" لعرض قائمة الطلاب</p>
+        </div>
+    `;
+    document.getElementById('studentsCountNumber').textContent = '0';
+}
+
+// دالة لعرض نافذة رفع Excel
+function showExcelUploadModal() {
+    document.getElementById('excelFile').value = '';
+    document.getElementById('excelFileName').textContent = '';
+    document.getElementById('excelPreview').style.display = 'none';
+    document.getElementById('importExcelBtn').disabled = true;
+    document.getElementById('excelUploadModal').style.display = 'block';
+}
+
+// دالة لمعاينة ملف Excel
+function previewExcelFile() {
+    const fileInput = document.getElementById('excelFile');
+    const fileName = document.getElementById('excelFileName');
+    const preview = document.getElementById('excelPreview');
+    const importBtn = document.getElementById('importExcelBtn');
+    
+    if (!fileInput.files.length) return;
+    
+    const file = fileInput.files[0];
+    fileName.textContent = file.name;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+            
+            if (jsonData.length === 0) {
+                Swal.fire('خطأ', 'الملف لا يحتوي على بيانات', 'error');
+                return;
+            }
+            
+            // عرض معاينة للبيانات
+            let html = '';
+            jsonData.slice(0, 5).forEach(row => {
+                html += `
+                    <tr>
+                        <td>${row['الاسم'] || ''}</td>
+                        <td>${row['الصف'] || ''}</td>
+                        <td>${row['المجموعة'] || ''}</td>
+                        <td>${row['المدرسة'] || ''}</td>
+                        <td>${row['رقم ولي الأمر (الأب)'] || row['رقم الأب'] || ''}</td>
+                        <td>${row['رقم ولي الأمر (الأم)'] || row['رقم الأم'] || ''}</td>
+                        <td>${row['اليوم'] || ''}</td>
+                    </tr>
+                `;
+            });
+            
+            document.getElementById('excelPreviewBody').innerHTML = html;
+            preview.style.display = 'block';
+            importBtn.disabled = false;
+            
+        } catch (error) {
+            console.error('Error reading Excel file:', error);
+            Swal.fire('خطأ', 'تعذر قراءة ملف Excel', 'error');
+        }
+    };
+    
+    reader.readAsArrayBuffer(file);
+}
+
+// دالة لاستيراد البيانات من Excel
+async function importExcelData() {
+    const fileInput = document.getElementById('excelFile');
+    if (!fileInput.files.length) return;
+    
+    showLoading(true);
+    
+    try {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = async function(e) {
+            try {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                
+                let importedCount = 0;
+                let skippedCount = 0;
+                
+                for (const row of jsonData) {
+                    if (!row['الاسم'] || !row['الصف']) {
+                        skippedCount++;
+                        continue;
+                    }
+                    
+                    const id = generateStudentId();
+                    const studentData = {
+                        name: row['الاسم'],
+                        main: row['الصف'],
+                        group: row['المجموعة'] || '',
+                        phone: row['رقم ولي الأمر (الأب)'] || row['رقم الأب'] || '',
+                        motherPhone: row['رقم ولي الأمر (الأم)'] || row['رقم الأم'] || '',
+                        school: row['المدرسة'] || '',
+                        day: row['اليوم'] || '',
+                        image: '',
+                        _file: currentDataFile
+                    };
+                    
+                    students[id] = studentData;
+                    allStudentsData[id] = studentData;
+                    importedCount++;
+                }
+                
+                await saveToGitHub();
+                closeModal();
+                
+                Swal.fire({
+                    title: 'تم الاستيراد',
+                    html: `تم استيراد ${importedCount} طالب بنجاح<br>`
+                         + `تم تخطي ${skippedCount} سجل بسبب بيانات ناقصة`,
+                    icon: 'success'
+                });
+                
+                // إذا كانت الطلاب معروضة، قم بتحديث العرض
+                if (studentsVisible) {
+                    renderStudentCards();
+                }
+                
+            } catch (error) {
+                console.error('Error processing Excel data:', error);
+                Swal.fire('خطأ', 'حدث خطأ أثناء معالجة البيانات', 'error');
+            } finally {
+                showLoading(false);
+            }
+        };
+        
+        reader.readAsArrayBuffer(file);
+        
+    } catch (error) {
+        console.error('Error importing Excel:', error);
+        Swal.fire('خطأ', 'تعذر استيراد البيانات من الملف', 'error');
+        showLoading(false);
+    }
+}
+
+// دالة لتحميل نموذج Excel
+function downloadExcelTemplate() {
+    // إنشاء بيانات نموذجية
+    const templateData = [
+        {
+            'الاسم': 'محمد أحمد',
+            'الصف': 'الصف الأول الابتدائي',
+            'المجموعة': 'المجموعة أ',
+            'المدرسة': 'مدرسة النور',
+            'رقم ولي الأمر (الأب)': '0123456789',
+            'رقم ولي الأمر (الأم)': '0123456780',
+            'اليوم': 'السبت'
+        },
+        {
+            'الاسم': 'فاطمة علي',
+            'الصف': 'الصف الثاني الابتدائي',
+            'المجموعة': 'المجموعة ب',
+            'المدرسة': 'مدرسة الشمس',
+            'رقم ولي الأمر (الأب)': '0123456781',
+            'رقم ولي الأمر (الأم)': '0123456782',
+            'اليوم': 'الأحد'
+        }
+    ];
+    
+    const ws = XLSX.utils.json_to_sheet(templateData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "الطلاب");
+    XLSX.writeFile(wb, "نموذج_الطلاب.xlsx");
 }
 
 // تعديل دالة تحميل الصفحة لإخفاء الطلاب عند الدخول
 window.onload = function() {
-  if (localStorage.getItem("isLoggedIn") === "true") {
-    document.getElementById("loginScreen").style.display = "none";
-    loadAllStudentsData();
-    loadPosts();
-    loadTrash();
-    loadWeeklyReports();
-    loadGroups();
-    fillGradeSelects();
-    fillGroupSelects();
-    const today = new Date();
-    document.getElementById('currentDate').textContent = today.toLocaleDateString('ar-EG');
-    
-    // إخفاء الطلاب عند الدخول
-    hideStudentsOnLoad();
-    
-    // إضافة العناصر الجانبية الجديدة
-    addAttendanceDashboardToSidebar();
-    addNotesButtonToSidebar();
-  }
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        document.getElementById("loginScreen").style.display = "none";
+        loadAllStudentsData();
+        loadPosts();
+        loadTrash();
+        loadWeeklyReports();
+        loadGroups();
+        fillGradeSelects();
+        fillGroupSelects();
+        const today = new Date();
+        document.getElementById('currentDate').textContent = today.toLocaleDateString('ar-EG');
+        
+        // إخفاء الطلاب عند الدخول
+        hideStudentsOnLoad();
+        
+        // إضافة العناصر الجانبية الجديدة
+        addAttendanceDashboardToSidebar();
+        addNotesButtonToSidebar();
+    }
 };
-
 
 function showError(msg) {
     Swal.fire('خطأ', msg, 'error');
